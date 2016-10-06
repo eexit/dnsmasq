@@ -1,0 +1,10 @@
+version: '2'
+services:
+  dnsmasq:
+    container_name: dnsmasq
+    image: eexit/dnsmasq:1.0.0
+    command: --address=/dev/127.0.0.1
+    restart: always
+    ports:
+      - "53:53"
+      - "53:53/udp"
