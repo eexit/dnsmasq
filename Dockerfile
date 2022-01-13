@@ -1,5 +1,4 @@
-FROM alpine:3.4
-MAINTAINER Joris Berthelot <admin@eexit.net>
+FROM alpine
 RUN apk add --update dnsmasq
 RUN rm -rf /var/cache/apk/*
 EXPOSE 53 53/udp
