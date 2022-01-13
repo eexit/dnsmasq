@@ -7,24 +7,24 @@ Shamelessly copied from my co-worker @sakai135.
 
     $ docker-compose up -d
     $ sudo mkdir /etc/resolver
-    $ echo "nameserver 127.0.0.1" | sudo tee /etc/resolver/dev
+    $ echo "nameserver 127.0.0.1" | sudo tee /etc/resolver/test
 
 Once you did that, the container will start automatically with the Docker daemon so you won't have to take care of it anymore.
 
 Test:
 
-    $ dig foo-bar.dev @127.0.0.1
-    ; <<>> DiG 9.8.3-P1 <<>> foo-bar.dev @127.0.0.1
+    $ dig foo-bar.test @127.0.0.1
+    ; <<>> DiG 9.8.3-P1 <<>> foo-bar.test @127.0.0.1
     ;; global options: +cmd
     ;; Got answer:
     ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 55047
     ;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0
 
     ;; QUESTION SECTION:
-    ;foo-bar.dev.           IN  A
+    ;foo-bar.test.           IN  A
 
     ;; ANSWER SECTION:
-    foo-bar.dev.        0   IN  A   127.0.0.1
+    foo-bar.test.        0   IN  A   127.0.0.1
 
     ;; Query time: 1 msec
     ;; SERVER: 127.0.0.1#53(127.0.0.1)
@@ -37,7 +37,7 @@ If you need to resolve other TLD (e.g. `.local`):
 
 If you don't use docker-compose:
 
-    $ docker run --name=dnsmasq --restart=always -d -p 0.0.0.0:53:53 -p 0.0.0.0:53:53/udp eexit/dnsmasq:1.0.0 --address=/dev/127.0.0.1
+    $ docker run --name=dnsmasq --restart=always -d -p 0.0.0.0:53:53 -p 0.0.0.0:53:53/udp eexit/dnsmasq:1.0.0 --address=/test/127.0.0.1
 
 ## Resources
 
